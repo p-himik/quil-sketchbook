@@ -26,7 +26,7 @@
   ;; The issue is that when we create a parent node, we don't attach it to the document,
   ;; so `document.querySelectorAll` doesn't return it. Meaning, we have to either
   ;; manually un-hide the canvas or attach the node to the document in some invisible node.
-  (let [canvas (.querySelector node "canvas")]
+  (when-let [canvas (.querySelector node "canvas")]
     (set! (.-style canvas) -visibility "")
     (js-delete (.-dataset canvas) "hidden")))
 
